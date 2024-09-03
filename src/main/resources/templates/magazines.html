@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Magazines List</title>
+</head>
+<body>
+<h1>Magazines</h1>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<form th:action="@{/magazines}" th:object="${magazine}" method="post">
+    <label>Title: <input type="text" th:field="*{title}"></label> <br>
+    <label>Publisher: <input type="text" th:field="*{publisher}"></label> <br>
+    <label>Year: <input type="text" th:field="*{year}"></label> <br>
+    <label>ISSN: <input type="text" th:field="*{issn}"></label> <br>
+    <button type="submit">Add Magazine</button>
+</form>
+<h2>Magazines List</h2>
+<ul>
+    <li th:each="magazine : ${magazines}">
+        <span th:text="${magazine.title}">Title</span>
+        <span th:text="${magazine.publisher}">Publisher</span>
+        <span th:text="${magazine.year}">Year</span>
+        <span th:text="${magazine.issn}">ISSN</span>
+    </li>
+</ul>
+<form th:action="@{/magazines/delete}" method="post">
+    <button type="submit">Clear All Magazines</button>
+</form>
+<p th:text="${message}"></p>
+<p th:text="${error}"></p>
+<div>
+    <a href="/books" class="button">Go to Books</a>
+</div>
+</body>
+</html>
